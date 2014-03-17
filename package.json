@@ -1,0 +1,24 @@
+{
+  "name": "simple-geolocation",
+  "version": "0.0.1",
+  "description": "Geospatial Indexing in MongoDB using Express and Mongoose",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "latest",
+    "ejs": "latest",
+    "mongoose": "latest"
+  },
+  "author": "Robert Onodi",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/robert52/simple-geolocation.git"
+  },
+  "bugs": {
+    "url": "https://github.com/robert52/simple-geolocation/issues"
+  },
+  "homepage": "https://github.com/robert52/simple-geolocation"
+}
