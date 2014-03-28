@@ -35,10 +35,7 @@ mongoose.connect('mongodb://localhost/geospatial_db', function(err) {
 app.configure(function() {
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  app.use(express.static(__dirname + '/public'));
-  app.use('/images', express.static(__dirname + '/writable'));
   app.use(app.router);
-  app.engine('html', require('ejs').renderFile);
 });
 
 // Define routes

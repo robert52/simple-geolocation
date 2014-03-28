@@ -20,8 +20,8 @@ module.exports = {
 
     // get coordinates [ <longitude> , <latitude> ]
     var coords = [];
-    coords[0] = req.query.longitude;
-    coords[1] = req.query.latitude;
+    coords[0] = req.query.longitude || 0;
+    coords[1] = req.query.latitude || 0;
 
     // find a location
     Location.find({
