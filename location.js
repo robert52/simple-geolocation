@@ -3,15 +3,18 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 // model creation
+
 var LocationModel = function() {
   var LocationSchema = new Schema({
     name: String,
     loc: {
-      type: [Number],
-      index: '2d'
+      type: [Number],   // format will be [ <longitude> , <latitude> ]
+      index: '2d'       // create the geospatial index
     }
   });
 
+
+  // register the mongoose model
   mongoose.model('Location', LocationSchema);
 };
 

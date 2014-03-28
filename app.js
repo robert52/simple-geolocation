@@ -5,40 +5,32 @@ var app = express();
 var server = require('http').createServer(app);
 var mongoose = require('mongoose');
 var async = require('async');
+var location = require('./location')();
 var controllers = require('./controller');
 var Location = mongoose.model('Location');
-
-var dummyData = [
-  { name: 'Location 1', loc: [0, 0] },
-  { name: 'Location 2', loc: [1, 1] },
-  { name: 'Location 3', loc: [2, 2] },
-  { name: 'Location 4', loc: [3, 3] },
-  { name: 'Location 5', loc: [4, 5] },
-  { name: 'Location 6', loc: [6, 6] },
-  { name: 'Location 7', loc: [7, 7] },
-  { name: 'Location 8', loc: [8, 8] }
-];
+var fs = require('fs');
+var path = require('path');
 
 // Bootstrap mongoose and load dummy data
-mongoose.connect('mongodb://localhost/geospatial', function(err) {
+mongoose.connect('mongodb://localhost/geospatial_db', function(err) {
   if (err) throw err;
 
+  // load data from file and transform it to Object
+  var data = JSON.parse(fs.readFileSync(path.join(__dirname, 'data.json'), 'utf8'));
+
+  // clean db and load new data
   Location.remove(function() {
-    async.each(dummyData, function(item, callback) {
+    async.each(data, function(item, callback) {
+      // create a new location
       Location.create(item, callback);
-    }, function(err) {});
+    }, function(err) {
+      if (err) throw err;
+    });
   });
 
 });
 
 // Configure Express
-
-app.engine('.html', require('ejs').__express);
-app.set('views', __dirname + '/views');
-// Without this you would need to
-// supply the extension to res.render()
-// ex: res.render('users.html').
-app.set('view engine', 'html');
 
 app.configure(function() {
   app.use(express.bodyParser());
@@ -51,6 +43,7 @@ app.configure(function() {
 
 // Define routes
 app.get('/', controllers.index);
+app.get('/api/locations', controllers.findLocation);
 
 // Start the server
 server.listen(3000, function() {
