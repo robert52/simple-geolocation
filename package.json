@@ -7,9 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "express": "latest",
-    "ejs": "latest",
-    "mongoose": "latest"
+    "express": "3.5.0",
+    "ejs": "1.0.0",
+    "mongoose": "latest",
+    "async": "latest"
   },
   "author": "Robert Onodi",
   "license": "MIT",
