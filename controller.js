@@ -11,7 +11,7 @@ module.exports = {
   findLocation: function(req, res, next) {
     var limit = req.query.limit || 10;
 
-    // get the max distance or set it to 800 meters
+    // get the max distance or set it to 8 kilometers
     var maxDistance = req.query.distance || 8;
 
     // we need to convert the distance to radians
